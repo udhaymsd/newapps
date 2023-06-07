@@ -53,7 +53,7 @@ function Welcome (props){
   return ( <div>
     <img className = "profile-pic" 
     src={props.pic} alt={props.name} />
-<h1>hello, {props.name} 🖐🏻 👌 🤝 </h1>
+<h1>hello, {props.name} 🖐🏻 👌  </h1>
 <Counter/>
   </div>
   );
