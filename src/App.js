@@ -1,6 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
-import {useState} from "react";
+import {Routes, Route, Link, Navigate} from "react-router-dom";
+import { Msg,double } from './Msg';
+import { Home } from './Home';
+import { AddColor } from './AddColor';
+import { MovieList } from './MovieList';
+import { useState } from 'react';
+
+//console.log(double(10);
+// import Msg from './Msg'; imports default
+
 
 function App() {
   const names = ["kumar","vijay","eega"];
@@ -19,7 +28,7 @@ function App() {
     }
   ]
 
-  const movieList = [{
+  const INITIAL_MOVIE_LIST = [{
 
     name: "Vikram",
     poster:
@@ -100,7 +109,7 @@ function App() {
     
     }
     ];
-
+const [movieList,setMovieList] = useState(INITIAL_MOVIE_LIST);
 
   return (
     <div className="App">
@@ -115,124 +124,36 @@ function App() {
 {/* {names.map(nm =><Msg name={nm} /> )} */}
 {/* {users.map((usr) =><Welcome name={usr.name} pic ={usr.pic}  />)} */}
 
-<AddColor />
-<div className="movie-list-container">
-{movieList.map((mv) =>(
-  <Movie movie={mv} /> 
-))}
-</div>
+{/* <AddColor /> */}
+{/* 
+<Msg name="Cool"/> */}
+
+<ul>
+  <li><Link to="/">Home</Link></li>
+  <li><Link to="/color-game">Color Game</Link></li>
+  <li><Link to ="/Movies">Movies</Link></li>
+</ul>
+
+
+<Routes>
+<Route path="/" element={<Home />} />
+<Route path="/color-game" element={<AddColor />} />
+<Route path="/films" element={<Navigate replace to = "/Movies" />} />
+
+ <Route path="/Movies" element={<MovieList movieList={movieList} setMovieList={setMovieList}/>} />
+ {/* *n  -> /404*/}
+
+<Route path="*" element={<Navigate replace to="/404"/>} />
+<Route path="/404" element={<NotFound/>} />
+</Routes>
  </div>
   );
 }
 
-function Movie ({movie}) {
-
-    
-  return (
-     <div  className='movie-container'>
- <img src={movie.poster} alt={movie.name} className='movie-poster' />
- <div className='movie-specs'>
-  <h2 className='movie-rating'>{movie.name} </h2>
-  <p className='movie-rating'>⭐ {movie.rating} </p>
- </div>
- <p className='movie-summary'>{movie.summary}</p>
-       
-     </div>
-  );
-}
-
-
-function AddColor (){
-  const [color, setColor] = useState("orange");
-  const INITIAL_COLOR_LIST = ["pink","plum","purple"];
-  const [colorList, setColorList] = useState(INITIAL_COLOR_LIST);
-  const styles ={
-    background: color,
-    fontSize: "20px",
-  };
-  return (
-    <div>
-      <input style={styles} type="text" onChange={(event)=> setColor(event.target.value)} placeholder="Enter a color" value={color} />
-
-{/* copy the colorList and andd newColor to it */}
-
-<button onClick={()=>setColorList([...colorList,color])}>Add Color</button>
-{colorList.map((clr) => (
-  <ColorBox color = {clr} />
-))}
-
-    </div>
-  )
-}
-
-function ColorBox({color}) {
-  const styles = {
-    background: color,
-    height: "75px",
-    width : "250px",
-    marginTop : "10px",
-    
-  };
-  return (<div style={styles}>
-    
+function NotFound () {
+  return (<div>
+    <img className="not-found" src="https://freefrontend.com/assets/img/html-funny-404-pages/CodePen-404-Page.gif" alt="404 NotFound" />
   </div>)
 }
-
-
-
-
-
-function Msg (props){
-  // const name = "udhaya"
-  // console.log(props);
-  return ( <div>
-<h1>hello, {props.name} 🖐🏻 👌  </h1>
-  </div>
-  );
-}
-
-
-//DRY - DONOT REPEAT YOURSELF
-
-function Counter(){
-  // let like = 10;
-  // const[state,setState] - useState(InitialValue);
-  // state - current value
-  // setState - function - update state
-  const [like,setLike] = useState(0);
-  const [disLike,setDisLike] =useState(0);
-  //camelCase -onclick - onClick
-  return (
-  <div>
-  <button onClick={() => setLike(like + 1)}>👍 {like}</button>
-<button onClick={() => setDisLike(disLike + 1)}> {disLike} 👎 </button>
-  {/* <p>{like}</p> */}
-  </div>
-  );
-}
-
-
-
-
-
-// function --> Componet
-// 1. Componet must start with a capital letter
-// 2. It must return one JSX element
-
-
-//Welcome - Component Definition / Declaration
-
-function Welcome (props){
-  // const name = "udhaya"
-  // console.log(props);
-  return ( <div>
-    <img className = "profile-pic" 
-    src={props.pic} alt={props.name} />
-<h1>hello, {props.name} 🖐🏻 👌  </h1>
-<Counter/>
-  </div>
-  );
-}
-
 
 export default App;
