@@ -9,7 +9,8 @@
 }
 
 .movie-container {
-  background-color: orange;
+  /* background-color: orange; */
+  height: min-content;
   width: 340px;
 }
 .movie-poster {
@@ -48,4 +49,9 @@
   gap: 10px;
   padding: 16px;
 
+}
+
+.movie-detail-container{
+  max-width: 850px;
+  /* padding: 16px; */
 }

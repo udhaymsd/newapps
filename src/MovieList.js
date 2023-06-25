@@ -1,42 +1,46 @@
-import { useState } from 'react';
 import { Movie } from './Movie';
+import { AddMovie } from './AddMovie';
+import { useEffect, useState } from 'react';
 
-export function MovieList({ movieList, setMovieList }) {
-  const [name,setName] = useState("");
-  const [poster,setPoster] = useState("");
-  const [rating,setRating] = useState("");
-  const [summary,setSummary] = useState("");
+export function MovieList() {
+  const [movieList, setMovieList] = useState([]);
+
+  const getMovies = () => {
+    fetch("https://649713dc83d4c69925a365b3.mockapi.io/movieProject",{
+      method: "GET",
+    }) 
+    .then((data) => data.json())
+     .then((mvs) => setMovieList(mvs));
+  }
+
+  
+
+  useEffect(() =>{ 
+    getMovies();
+   } ,[]);
+ 
+const deleteMovie = (id) => {
+console.log("Deleting movie...",id);
+//Delete -> Refresh data
+fetch(`https://649713dc83d4c69925a365b3.mockapi.io/movieProject/${id}`,
+   {method:"DELETE",}).then(() => getMovies());
+  
+  //  getMovies();
+  };
+
+
 
   return (
     <div>
-      <div className='add-movie-form'>
-        <input type="text " placeholder="Name" onChange={(event) => setName (event.target.value)}/> 
-        {/* {name} */}
-        <input type="text" placeholder="Poster" onChange={(event) =>setPoster (event.target.value)} />
-        <input type="text" placeholder="Rating" onChange={(event) =>setRating (event.target.value)} />
-        <input type="text" placeholder="Summary" onChange={(event) =>setSummary (event.target.value)} />
-        
-        {/* copy the movieList and add newMovie to it */}
-        <button onClick={() => {
-          const newMovie = {
-            name: name,
-            poster: poster ,  
-            rating : rating ,
-            summary : summary,
-          };
-          console.log(newMovie);
-          setMovieList([...movieList,newMovie])
-
-        }}>Add movie</button>
-        
-      </div>
-
-    
+     
     <div className="movie-list-container">
       {movieList.map((mv,index) => (
-        <Movie movie={mv} key={index}/>
+        <Movie movie={mv} key={mv.id} id={mv.id}
+        deleteBtn={<button onClick={() => deleteMovie(mv.id) }>Delete</button>}/>
       ))}
     </div>
     </div>
   );
 }
+
+
