@@ -5,6 +5,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import { useNavigate } from 'react-router-dom';
+import { API } from './global';
 
 export function MovieList() {
   const [movieList, setMovieList] = useState([]);
@@ -12,7 +13,7 @@ export function MovieList() {
   
 
   const getMovies = () => {
-    fetch("https://649713dc83d4c69925a365b3.mockapi.io/movieProject",{
+    fetch(`${API}/movieProject`,{
       method: "GET",
     }) 
     .then((data) => data.json())
@@ -29,7 +30,7 @@ export function MovieList() {
 const deleteMovie = (id) => {
 console.log("Deleting movie...",id);
 //Delete -> Refresh data
-fetch(`https://649713dc83d4c69925a365b3.mockapi.io/movieProject/${id}`,
+fetch(`${API}/movieProject/${id}`,
    {method:"DELETE",}).then(() => getMovies());
   
   //  getMovies();

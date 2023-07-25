@@ -20,6 +20,7 @@ import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { BasicForm } from './BasicForm';
 import { EditMovie } from './EditMovie';
+import { API } from './global';
 
 
 
@@ -236,7 +237,7 @@ function MovieDetails() {
   const [movie, setMovie] = useState({});
 
   useEffect(() =>{
-    fetch(`https://649713dc83d4c69925a365b3.mockapi.io/movieProject/${id}`) 
+    fetch(`${API}/movieProject/${id}`) 
     .then((data) => data.json())
      .then((mv) => setMovie(mv));
   },[]);
