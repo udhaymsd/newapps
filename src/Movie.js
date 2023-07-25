@@ -11,7 +11,7 @@ import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 
 
-export function Movie({ movie, id, deleteBtn }) {
+export function Movie({ movie, id, deleteBtn, editBtn }) {
 //conditional styling
 const styles = {
 color: movie.rating > 8 ? "green" : "red",
@@ -55,8 +55,8 @@ const navigate = useNavigate();
 {show ? <p className="movie.summary">{movie.summary}</p> : null}
 </CardContent>
 <CardActions>
-<Counter /> {deleteBtn}
-</CardActions>
+<Counter />       {deleteBtn} {editBtn} 
+</CardActions>       
     </Card>
   );
 }

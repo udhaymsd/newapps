@@ -18,6 +18,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
+import { BasicForm } from './BasicForm';
+import { EditMovie } from './EditMovie';
 
 
 
@@ -182,7 +184,7 @@ function App() {
               <Button onClick={() => navigate('/Movies')} color="inherit">Movies</Button>
               <Button onClick={() => navigate("/Movies/add")} color="inherit">Add Movie</Button>
               <Button onClick={() => navigate('/color-game')} color="inherit">Color Game</Button>
-              <Button startIcon={
+              <Button style={{marginLeft:"auto"}} startIcon={
                 mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
                 onClick={() => setMode(mode === "light" ? "dark" : "light")} color="inherit">{mode === "light" ? "dark" : "light"} Mode</Button>
             </Toolbar>
@@ -210,7 +212,10 @@ function App() {
 
             {/* <Route path="*" element={<Navigate replace to="/404"/>} /> */}
             <Route path="/404" element={<NotFound />} />
-          </Routes>
+                 
+            <Route path="/movies/edit/:id" element={<EditMovie />} />
+            <Route path="/basic-form" element={<BasicForm />} />
+          </Routes>  
         </div>
       </Paper>
     </ThemeProvider>
@@ -263,3 +268,5 @@ function MovieDetails() {
   </div>
   );
 }
+
+
