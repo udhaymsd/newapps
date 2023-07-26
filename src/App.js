@@ -237,7 +237,7 @@ function MovieDetails() {
   const [movie, setMovie] = useState({});
 
   useEffect(() =>{
-    fetch(`${API}/movieProject/${id}`) 
+    fetch(`${API}/movies/${id}`) 
     .then((data) => data.json())
      .then((mv) => setMovie(mv));
   },[]);

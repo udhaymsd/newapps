@@ -13,7 +13,7 @@ export function MovieList() {
   
 
   const getMovies = () => {
-    fetch(`${API}/movieProject`,{
+    fetch(`${API}/movies`,{
       method: "GET",
     }) 
     .then((data) => data.json())
@@ -30,7 +30,7 @@ export function MovieList() {
 const deleteMovie = (id) => {
 console.log("Deleting movie...",id);
 //Delete -> Refresh data
-fetch(`${API}/movieProject/${id}`,
+fetch(`${API}/movies/${id}`,
    {method:"DELETE",}).then(() => getMovies());
   
   //  getMovies();

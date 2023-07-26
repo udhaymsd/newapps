@@ -62,7 +62,7 @@ const addMovie = (newMovie) => {
 //   //2. Body- data(JSON)
 //   //3. Headers - JSON
 
-  fetch(`${API}/movieProject/`,
+  fetch(`${API}/movies/`,
 {
 method:"POST",
 body:JSON.stringify(newMovie),
