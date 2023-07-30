@@ -21,7 +21,7 @@ import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { BasicForm } from './BasicForm';
 import { EditMovie } from './EditMovie';
 import { API } from './global';
-
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
 
 //console.log(double(10);
@@ -263,7 +263,7 @@ function MovieDetails() {
           <p style={styles} className='movie-rating'>⭐ {movie.rating} </p>
         </div>
         <p className='movie-summary'>{movie.summary}</p>
-        <button onClick={() => navigate(-1)}>Back</button>
+        <Button variant='contained' startIcon={<KeyboardBackspaceIcon />} onClick={() => navigate(-1)}>Back</Button>
       </div>
     </div>
   </div>

@@ -43,9 +43,9 @@ fetch(`${API}/movies/${id}`,
      
     <div className="movie-list-container">
       {movieList.map((mv,index) => (
-        <Movie movie={mv} key={mv.id} id={mv.id}
+        <Movie movie={mv} key={mv._id} id={mv._id}
         deleteBtn={<IconButton color='error' style={{marginLeft:"auto"}} onClick={() => deleteMovie(mv.id) } aria-label='delete a movie'><DeleteIcon/></IconButton>}
-      editBtn = {<IconButton color='secondary' onClick={() => navigate (`/movies/edit/${mv.id}`) } aria-label='edit a movie'><EditIcon/></IconButton>}
+      editBtn = {<IconButton color='secondary' onClick={() => navigate (`/movies/edit/${mv._id}`) } aria-label='edit a movie'><EditIcon/></IconButton>}
 
      />
      ))}

@@ -65,7 +65,7 @@ const addMovie = (newMovie) => {
   fetch(`${API}/movies/`,
 {
 method:"POST",
-body:JSON.stringify(newMovie),
+body:JSON.stringify([newMovie]),
 headers: {
 "Content-Type": "application/json",
 },
@@ -94,7 +94,7 @@ headers: {
       onChange={handleChange} />
        
       <TextField error={touched.rating && errors.rating}
-      helperText = {touched.rating && errors.rating ? errors.name : null}
+      helperText = {touched.rating && errors.rating ? errors.rating : null}
       label="Rating" variant="outlined" name='rating'
       value={values.rating}
       onBlur={handleBlur}
@@ -116,9 +116,9 @@ headers: {
  
       {/* copy the movieList and add newMovie to it */}
 
-      <pre>Values:{JSON.stringify(values)}</pre>
+      {/* <pre>Values:{JSON.stringify(values)}</pre>
       <pre>Error:{JSON.stringify(errors)}</pre>
-      <pre>Touched;{JSON.stringify(touched)}</pre> 
+      <pre>Touched;{JSON.stringify(touched)}</pre>  */}
 
       <Button type='submit'
       variant="contained">Add movie</Button>
