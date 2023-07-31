@@ -56,6 +56,8 @@ console.log(movie);
 return movie ? <EditMovieForm movie={movie}/> : "Loading ....";
 }
 
+
+
 function EditMovieForm({movie}) {
   
   const {handleSubmit,values,handleChange,handleBlur,touched,errors} = 
